@@ -1,0 +1,48 @@
+<li class="media post" id="<%= post.id %>">
+  <%= link_to post, class: 'pull-left' do %>
+    <%= image_tag 'udef.png' %>
+  <% end %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= post.user.fullname %>
+      <div class="text-muted">
+        <%= "#{time_ago_in_words(post.created_at)} ago." %>
+      </div>
+    </h4>
+    <% if post.can_delete?(current_user) %>
+      <div class="pull-right">
+        <%= link_to post, method: :delete, remote: true, class: 'btn btn-danger btn-xs' do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="well">
+      <%= post.content %>
+      <div class="text-right">
+        <% if user_signed_in? %>
+          <% if post.liked?(current_user.id) %>
+            <%= link_to "unlike", '#', remote: true, id: 'post-unlike', data: { id: post.id } %>
+          <% else %>
+            <%= link_to "like", '#', remote: true, id: 'post-like', data: { id: post.id } %>
+          <% end %>
+        <% end %>
+        <i class="fa fa-heart text-muted" id="post-likes-count">
+          <%= post.likes.count %>
+        </i>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-10">
+          <div class="well">
+            <ul class="media-list Post" id="comments_<%= post.id %>">
+              <% post.comments.each do |comment| %>
+                <%= render 'comments/comment', comment: comment %>
+              <% end %>
+            </ul>
+            <hr/>
+            <%= render 'comments/form_inputs', commentable_type: 'post', commentable_id: post.id %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

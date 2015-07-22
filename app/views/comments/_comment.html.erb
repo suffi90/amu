@@ -1,0 +1,35 @@
+<li class="media post" id="comment_<%= comment.id %>">
+  <%= link_to '#', class: 'pull-left' do %>
+    <%= image_tag 'udef.png' %>
+  <% end %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= comment.user.fullname %>
+      <div class="text-muted">
+        <%= "#{time_ago_in_words(comment.created_at)} ago." %>
+      </div>
+    </h4>
+    <% if comment.can_delete?(current_user) %>
+      <div class="pull-right">
+        <%= link_to comment, method: :delete, remote: true, class: 'btn btn-danger btn-xs' do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="well">
+      <%= comment.content %>
+      <div class="text-right">
+        <% if user_signed_in? %>
+          <% if comment.liked?(current_user.id) %>
+            <%= link_to "unlike", '#', remote: true, id: 'comment-unlike', data: { id: comment.id } %>
+          <% else %>
+            <%= link_to "like", '#', remote: true, id: 'comment-like', data: { id: comment.id } %>
+          <% end %>
+        <% end %>
+        <i class="fa fa-heart text-muted" id="comment-likes-count">
+          <%= comment.likes.count %>
+        </i>
+      </div>
+    </div>
+  </div>
+</li>

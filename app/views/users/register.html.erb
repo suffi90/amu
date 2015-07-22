@@ -1,0 +1,43 @@
+<div class="col-md-3">
+  <%= form_tag registration_path(:user) do %>
+    <br/>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">***</span>
+      <%= text_field_tag 'user[first_name]', nil, class: 'form-control', placeholder: 'first name' %>
+    </div>
+    <br/>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">***</span>
+      <%= text_field_tag 'user[last_name]', nil, class: 'form-control', placeholder: 'last name' %>
+    </div>
+    <br/>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">@</span>
+      <%= text_field_tag 'user[email]', nil, class: 'form-control', placeholder: 'email' %>
+    </div>
+    <br/>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">***</span>
+      <%= password_field_tag 'user[password]', nil, class: 'form-control', placeholder: 'password' %>
+    </div>
+    <br/>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">***</span>
+      <%= password_field_tag 'user[password_confirmation]', nil, class: 'form-control', placeholder: 'confirm password' %>
+    </div>
+    <br/>
+    <div class="text-right">
+      <button class="btn btn-default btn-lg">Sign up</button>
+    </div>
+  <% end %>
+  <%= link_to "Already have an account?", new_user_session_path %>
+</div>
+<div class="col-md-9">
+  <div class="jumbotron">
+    <h1>am.ua - social</h1>
+    <p>You can register or login for free!</p>
+    <p class="text-muted">
+      <%= link_to 'Wiki', '#' %>
+    </p>
+  </div>
+</div>

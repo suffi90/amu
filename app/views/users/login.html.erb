@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= form_tag session_path(:user) do %>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon">@</span>
+        <%= text_field_tag 'user[email]', nil, class: 'form-control' %>
+      </div>
+      <br/>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon">***</span>
+        <%= password_field_tag 'user[password]', nil, class: 'form-control' %>
+      </div>
+      <br/>
+      <div class="text-right">
+        <button class="btn btn-default btn-lg">Sign in</button>
+      </div>
+    <% end %>
+    <%= check_box_tag 'user[remember_me]' %>
+    <%= label_tag 'user[remember_me]', 'Remember me' %>
+    <br/>
+    <%= link_to "Don't have an account?", new_user_registration_path %>
+  </div>
+  <div class="col-md-9">
+    <div class="jumbotron">
+      <h1>am.ua - social</h1>
+      <p>You can register or login for free!</p>
+      <p class="text-muted">
+        <%= link_to 'Wiki', '#' %>
+      </p>
+    </div>
+  </div>
+</div>

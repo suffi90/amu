@@ -1,0 +1,11 @@
+<li class="media post" id="user_<%= user.id %>">
+  <%= link_to user, class: 'pull-left' do %>
+    <%= image_tag 'udef.png' %>
+  <% end %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= user.fullname %>
+    </h4>
+    <%= user.email %>
+  </div>
+</li>
